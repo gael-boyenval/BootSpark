@@ -1,0 +1,1758 @@
+@import 'molecules/_modals.scss';
+@import 'molecules/_datePicker.scss';
+
+/*
+---------------------------
+ blocs messages et infos
+---------------------------
+*/
+
+.message {
+    @extend %border-radius-std;
+    @include background(gris);
+    @extend %color-std;
+    @include border();
+    display: flex;
+    flex-flow: row wrap;
+    padding: pas(s) pas(m);
+
+    &:not(:last-child) {
+        margin-bottom: pas(l);
+    }
+
+    &:empty {
+        display: none;
+    }
+
+    &._fermable {
+        @include icon;
+        @extend .icon-Fermer;
+        position: relative;
+
+        &::before {
+            position: absolute;
+            font-size: 20px;
+            right: 5px;
+            top: 5px;
+        }
+    }
+
+    &._erreur {
+        @include background(erreur);
+        @include border($color: erreur);
+        @extend %color-erreur;
+    }
+
+    &._valide {
+        @include background(valide);
+        @include border($color: valide);
+        @extend %color-valide;
+    }
+
+    &._notif {
+        @include background(notif);
+        @include border($color: action);
+        @extend %color-link;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: underline;
+    }
+
+    &-texte {
+        flex: 1 100%;
+        display: block;
+        position: relative;
+        margin: pas(s) 0;
+        padding-left: pas(l);
+
+        @include screen(medium) {
+            flex: 1;
+        }
+
+        &::before {
+            position: absolute;
+            text-align: center;
+            font-size: 20px;
+            width:20px;
+            left: -2px;
+            top: 0;
+        }
+
+        ._fermable & {
+            padding-right: pas(l);
+        }
+
+        ._erreur & {
+            @include icon;
+            &::before {
+                @extend %icontexte;
+                content: "!";
+            }
+        }
+        ._valide & {
+            @include icon;
+            @extend .icon-Check-XL;
+        }
+        ._info & {
+            @include icon;
+            &::before {
+                @extend %icontexte;
+                content: "i";
+            }
+        }
+        ._notif & {
+            @include icon;
+            &::before {
+                @extend %icontexte;
+                content: "?";
+            }
+        }
+    }
+
+    &-icon {
+        @include icon;
+        position: absolute;
+        top: 0;
+        left: -2px;
+    }
+
+    &-titre {
+        display: block;
+        font-weight: bold;
+        margin-bottom: pas(s);
+    }
+
+    &-liste {
+        padding-left: 0;
+    }
+}
+
+/* hack pour restyler les messages magento
+sur lesquels nous n'avons pas la main */
+.messages {
+    @extend .conteneur;
+    @include screen(small) {
+        margin-left: pas(m);
+        margin-right: pas(m);
+    }
+
+    > li {
+        @extend .message;
+
+        li {
+            @extend .message-texte;
+        }
+    }
+    // success
+    > .success-msg {
+        @extend .message._valide;
+
+        li {
+            @include icon;
+            @extend .icon-Check-XL;
+        }
+    }
+
+    // error
+    > .error-msg {
+        @extend .message._erreur;
+
+        li {
+            @include icon;
+            &::before {
+                @extend %icontexte;
+                content: "!";
+            }
+        }
+    }
+}
+
+/*
+hack pour styler d'autres messages
+portant d'autres selecteurs
+( dom arvato sur tunnel )
+*/
+[id="admin_messages"]:not(:empty) {
+    @extend .message._erreur;
+    @include icon;
+    padding: pas(m);
+    &::before {
+        @extend %icontexte;
+        content: "!";
+    }
+}
+
+/*
+---------------------------
+ table
+---------------------------
+*/
+
+.table {
+    @include border($cardinal: top);
+    @include fontsize(std);
+    width: 100%;
+
+    td, th {
+        @include fontsize(std);
+        padding: pas(m);
+        text-align: left;
+        font-weight: normal;
+    }
+
+    thead {
+        @extend %color-negatif;
+        @include background(colore_sombre);
+
+        tr {
+            border: 0;
+        }
+    }
+
+    tr {
+        @include border();
+        border-top: 0;
+
+        &:nth-child(even){
+            @include background(gris);
+        }
+    }
+
+    /* Responsive table */
+    &._responsive {
+        @include screen(small) {
+            tbody, tr, th, td {
+                display: block;
+            }
+
+            th, td {
+                position: relative;
+                padding: pas(s);
+
+            }
+
+            thead {
+                position: absolute;
+                top: -110%;
+            }
+
+            tr {
+                padding-top: pas(m);
+                padding-bottom: pas(m);
+            }
+        }
+    }
+}
+
+/*
+---------------------------
+  tooltip
+---------------------------
+*/
+
+.infobulle {
+    @extend %border-radius-std;
+    @include border();
+    @include background(clair);
+    display: inline-block;
+    position: relative;
+    max-width: 400px;
+    padding: pas(m);
+
+    &._top {
+        @include bloc-fleche($position: 'bottom');
+    }
+
+    &._right {
+        @include bloc-fleche;
+    }
+
+    &-title {
+        display: block;
+        font-weight: bold;
+    }
+}
+
+/*
+---------------------------
+  pagination
+---------------------------
+*/
+
+.pagination {
+
+    text-align: center;
+
+    &-suiv,
+    &-prec,
+    &-numero,
+    &-bullet {
+        display: inline-block;
+        vertical-align: middle;
+        margin: pas(s);
+        a {
+            text-decoration: none;
+        }
+    }
+    /*next / prev arrows */
+    &-prec > a ,
+    &-suiv > a {
+        @include icon;
+        @extend %color-gris;
+        cursor: pointer;
+
+        &::before:hover {
+            @extend %color-link;
+        }
+    }
+
+    &-prec > a { @extend .icon-Chevron-gauche; }
+    &-suiv > a { @extend .icon-Chevron-droite; }
+
+
+    &-bullet {
+        @extend %cercle;
+        @include background(gris);
+        @extend %transition;
+        width: 8px;
+        height: 8px;
+
+        &.est-actif,
+        &:hover {
+            cursor: pointer;
+            @include background(active);
+        }
+    }
+
+    &-numero {
+        @include fontsize(m);
+        @extend %transition;
+        width: 15px;
+        margin-left: pas(s);
+        padding-top: pas(s);
+        padding-bottom: pas(s);
+        font-weight: bold;
+
+        &.est-actif,
+        &:hover {
+            @extend %color-link;
+            @include border($color: action, $cardinal: bottom);
+            cursor: pointer;
+        }
+    }
+}
+
+/*
+---------------------------
+  breadcrumb
+---------------------------
+*/
+
+.breadcrumb {
+    padding: pas(m) 0;
+
+    &-item {
+        display: inline-block;
+        padding-right: pas(s);
+        font-weight: 400;
+
+        &:not(:first-child) {
+            @extend .icon-Chevron-droite;
+            @include icon;
+
+            @include screen(not-large) {
+                display: none;
+            }
+
+            &::before {
+                @extend %color-clair;
+                padding-right: pas(s);
+            }
+        }
+
+        &:first-child a {
+            @include icon;
+            @extend .icon-Accueil;
+            &::before {
+                @include fontsize(m);
+                margin-right: pas(s);
+            }
+        }
+    }
+}
+
+/*
+---------------------------
+  Bloc centraux
+  a bordures grises
+  et texte gris
+---------------------------
+*/
+
+.mention {
+    @extend %color-gris;
+    @include fontsize(s);
+    display: block;
+    padding: pas(s) 0;
+
+    &._bordure,
+    &._bordurebas {
+        @include fontsize(xs);
+    }
+
+    &._bordure {
+        @extend %border-double;
+        padding: pas(m) 0;
+    }
+
+    &._bordurebas {
+        @include border($cardinal: bottom);
+        padding: pas(m) 0;
+    }
+}
+
+/*
+---------------------------
+  header avec
+  titre et sous-titre
+---------------------------
+*/
+
+.entete {
+    padding: pas(l) 0;
+
+    @include screen(small) {
+        padding: pas(m) 0;
+    }
+
+    &-titre {
+        @extend .t3;
+        margin: 0;
+    }
+
+    &-intro {
+        @include fontsize(m);
+        margin: pas(s) 0 0;
+    }
+}
+
+/*
+---------------------------
+  section de page
+---------------------------
+*/
+
+.section {
+    @include border($width: large, $color: sombre, $cardinal: top);
+    margin-bottom: pas(l);
+
+    @include screen(small) {
+        padding: 0 pas(m);
+
+        &._bordabord {
+            margin-left: - pas(m);
+            margin-right: - pas(m);
+        }
+    }
+
+    @include screen(from-medium) {
+        padding: 0;
+    }
+}
+
+/*
+---------------------------
+  Boites
+---------------------------
+*/
+
+.boite {
+    @include border();
+    @include background(clair);
+    margin-bottom: pas(l);
+
+    &._bordclair,
+    &._bordsombre {
+        border-top: 0;
+        margin-top: $border-width-large;
+    }
+
+    &._bordclair {
+        box-shadow: 0 (- $border-width-large) 0 0 map-get($border-colors, action);
+    }
+
+    &._bordsombre {
+        box-shadow: 0 (- $border-width-large) 0 0 map-get($border-colors, sombre);
+    }
+
+    &._fondsombre {
+        @include background(gris);
+    }
+
+    &-section,
+    &-entete {
+        ._margedroitelarge & {
+            padding-right: pas(xl);
+        }
+    }
+
+    &-entete {
+        padding: 0 pas(m);
+    }
+
+    &-section {
+        padding: pas(m);
+
+        &:empty {
+            display: none;
+        }
+
+        &:not(:last-of-type) {
+            @include border($cardinal: bottom);
+        }
+
+        &._paddingbasnul {
+            padding-bottom: 0;
+        }
+
+        &._sansbord {
+            border-bottom: 0;
+        }
+
+        &._bordhaut {
+            border-bottom: 0;
+            @include border($cardinal: top);
+        }
+
+        &._paddinglarge {
+            padding: pas(l);
+        }
+    }
+}
+
+
+/*
+---------------------------
+menus
+---------------------------
+*/
+
+.blockliste {
+    @include border();
+    margin-bottom: pas(l);
+
+    @include screen(from-large) {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    @include screen(small) {
+        border-left: 0;
+        border-right: 0;
+
+        &._bordabord {
+            margin-left: - pas(m);
+            margin-right: - pas(m);
+        }
+    }
+
+    &._clair {
+        @include background(clair);
+    }
+
+    &._sombre {
+        @include border($width: large, $color: action_hover, $cardinal: top);
+        @include background(gris);
+    }
+
+    &._bordurehaute {
+        @include border($width: large, $color: sombre, $cardinal: top);
+    }
+
+    &._hide-not-large {
+        @include screen(not-large) {
+            display: none;
+        }
+    }
+
+    &-icon {
+        margin-right: pas(m);
+    }
+
+    &-section {
+        @include border($cardinal: bottom);
+        padding-top: pas(s);
+        padding-bottom: pas(s);
+
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+
+    &-header {
+        padding: pas(m);
+        margin: 0;
+    }
+
+    &-item {
+        margin: 0;
+        padding-left: pas(m);
+        padding-right: pas(m);
+        // hack for icon-class applying display:inline-block to element
+        width: 100%;
+
+        ._icones &,
+        ._fleches &-link {
+            display: inline-flex;
+            flex-flow: row nowrap;
+            flex: 1 100%;
+        }
+
+        ._icones & {
+            align-items:baseline;
+            &:before {
+                // centering hack
+                transform: translateY(.2em);
+                min-width: 30px;
+                max-width: 30px;
+            }
+        }
+
+        ._fleches &-icone {
+            @extend .itemfleche;
+            // force width with flexbox
+            min-width: 20px;
+            max-width: 20px;
+
+            &:before {
+                text-decoration: none !important;
+            }
+        }
+
+        &-link {
+            display: block;
+            flex: 1 100%;
+            padding-top: pas(s);
+            padding-bottom: pas(s);
+            font-weight: normal;
+
+            &._big,
+            &._big > *  {
+                margin: 0;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+/*
+---------------------------
+  Hub
+---------------------------
+*/
+
+.listeoptions {
+
+    &:not(:last-of-type) {
+        margin-bottom: pas(l);
+    }
+
+    &-groupe {
+        padding: pas(m) 0;
+
+        @include screen(from-medium) {
+            @include border($cardinal: top);
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+            flex-flow: row wrap;
+        }
+
+        &._empile {
+            @include screen(small) {
+                @include border();
+                padding-top: 0;
+                padding-bottom: 0;
+                border-top: 0;
+
+                &:first-child {
+                    @include borderRadius(top);
+                    @include border($cardinal: top);
+                }
+
+                &:last-child {
+                    @include borderRadius(bottom);
+                    margin-bottom: pas(l);
+                }
+            }
+        }
+
+        // appliquer une marge sur le premier
+        // element suivant un .listeoptions-groupe
+        &._empile + &:not(._empile) {
+            @include screen(small) {
+                padding-top: pas(l);
+            }
+        }
+    }
+
+    &-option {
+
+        @include screen(small) {
+            @include borderRadius(top);
+            @include border();
+            padding: pas(m) pas(s);
+            border-bottom: 0;
+
+            ._empile & {
+                border-radius: 0;
+                border: 0;
+            }
+        }
+
+        [class^="icon-"], [class*=" icon-"] {
+            margin-right: pas(s);
+            &:nth-child(2) {
+                margin-left: pas(m);
+            }
+        }
+    }
+
+    &-edit {
+
+        @include screen(from-medium) {
+            text-align: right;
+        }
+
+        @include screen(small) {
+            @include border();
+            ._empile & {
+                border-radius: 0;
+                border: 0;
+            }
+        }
+
+        &-link {
+            @include icon;
+            @extend .icon-Chevron-droite;
+            display: block;
+            padding-bottom: pas(s);
+
+            @include screen(small) {
+                @include border($cardinal: bottom);
+                display: block;
+                width: 100%;
+                padding: pas(m) pas(s);
+
+                ._empile & {
+                    padding-top: 0;
+                }
+            }
+
+            &:before { // icon fleche
+                @extend %color-gris;
+                @include fontsize(std);
+                line-height: 20px;
+                width: 12px;
+                opacity: .5;
+                float: right;
+                padding-left: pas(m);
+
+                @include screen(from-medium) {
+                    display: none;
+                }
+            }
+        }
+
+        & &-link:last-child {
+            @include screen(from-medium) {
+                padding-bottom: pas(n);
+            }
+            @include screen(small) {
+                border-bottom: 0;
+            }
+        }
+    }
+}
+
+/*
+---------------------------
+  Bloc nom + avatar
+---------------------------
+*/
+
+.blockclient {
+    display: flex;
+    align-items: center;
+    margin-bottom: pas(l);
+
+    @include screen(small) {
+        margin: pas(l) 0;
+    }
+
+    &._petit {
+        margin: 0;
+    }
+
+    &-infos {
+        flex: initial;
+    }
+
+    &-numero {
+        font-weight: bold;
+    }
+
+    &-avatar {
+        @extend %cercle;
+        align-self: top;
+        flex-basis: 70px;
+        width: 70px;
+        height: 70px;
+        background: #CCC url('../imgs/avatar_empty.jpg') top no-repeat;
+        background-size: 100% 100%;
+
+        &:not(:only-child) {
+            margin: 0 pas(m) 0 0;
+        }
+
+        ._petit & {
+            align-self: center;
+            flex-basis: 30px;
+            width: 30px;
+            height: 30px;
+        }
+
+        @include screen(small) {
+            flex-basis: 50px;
+            width: 50px;
+            height: 50px;
+        }
+    }
+
+    &-alignedroite {
+        float: right;
+        font-weight: bold;
+
+        @include screen(small) {
+            display: none;
+        }
+    }
+
+    &-nom {
+        @include fontsize(t4);
+        display: block;
+        margin: 0 0 pas(s);
+
+        ._petit & {
+            @include fontsize(std);
+            margin: 0;
+        }
+    }
+
+    &-welcome {
+        @include screen(small) {
+            display: none;
+        }
+        ._petit & {
+            @include screen(medium) {
+                display: none;
+            }
+        }
+    }
+}
+
+
+/*
+----------------
+ hack pour selection adresse existante
+----------------
+*/
+
+address.formater > br:not(:first-child):not(:last-child) { display: none; }
+
+
+/*
+-----------------
+ abonement concerne
+-----------------
+*/
+
+.listeencadre {
+    @include border($cardinal: bottom);
+    padding-bottom: pas(m);
+    margin-bottom: pas(l);
+
+    &-titre {
+        margin: 0 0 pas(s);
+    }
+
+    &-liste {
+        padding-left: pas(l);
+    }
+
+    &-item {
+        list-style: disc;
+
+        &._gras {
+            @include fontsize(m);
+            font-weight: bold;
+        }
+    }
+
+    &-soustitre {
+        margin-bottom: pas(s);
+        font-weight: bold;
+    }
+}
+
+/*
+----------------------
+ Onglets de navigation
+----------------------
+*/
+
+.onglets {
+    display: flex;
+    width: 100%;
+
+    &-conteneur {
+        @include border($cardinal: bottom);
+    }
+
+    &-item {
+        flex: none;
+        display: flex;
+        align-self: center;
+
+        &:nth-child(1) {
+            @include border($cardinal: left);
+        }
+
+        ._simple &:nth-child(1) {
+            border: 0;
+        }
+    }
+
+    &-lien {
+        @include background(clair);
+        @extend %transition;
+        @extend %color-std;
+        @include border($cardinal: right);
+        display: inline-block;
+        padding: pas(m) pas(l);
+        margin: 0;
+        box-shadow: 0 map-get($border-widths, large) 0 0 map-get($border-colors, std) inset;
+
+        &:hover {
+            box-shadow: 0 map-get($border-widths, large) 0 0 map-get($border-colors, action) inset;
+            text-decoration: none;
+        }
+
+        ._simple & {
+            box-shadow: none;
+            @include border($color: alpha_clair);
+            border-bottom: 0;
+
+            &:hover {
+                @include border();
+                border-bottom: 0;
+                box-shadow: none;
+            }
+        }
+    }
+
+    &-item.est-actif &-lien,
+    &-item.est-actif &-lien:hover {
+        font-weight: bold;
+        box-shadow:
+            0 map-get($border-widths, std) 0 0 $blanc,
+            0 map-get($border-widths, large) 0 0 map-get($border-colors, action) inset;
+
+        ._simple & {
+            box-shadow: 0 map-get($border-widths, std) 0 0 $blanc;
+            @include border();
+            border-bottom: 0;
+        }
+    }
+
+    &-item.mention {
+        padding: 0 pas(m);
+    }
+}
+
+/*
+---------------------------
+ chargement (ajax)
+---------------------------
+*/
+
+.chargement {
+    display: block;
+    margin-top: pas(xl);
+    text-align: center;
+}
+
+
+/*
+---------------------------
+ menu deroulants
+---------------------------
+*/
+
+.deroulant {
+    position: relative;
+
+    &:hover {
+        @include background(active_hover);
+
+        &._from-large {
+            @include screen(not-large) {
+                background: none;
+            }
+        }
+    }
+
+    &-entete {
+        @extend %icon;
+        @extend .icon-Chevron-gauche;
+        display: flex;
+        min-width: 150px;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        &:before {
+            order: 2;
+            margin-left: pas(m);
+            transform: rotate(-90deg);
+        }
+
+        ._from-large & {
+            @include screen(not-large) {
+                display: block;
+                width: 100%;
+                cursor: default;
+
+                &:before {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    &-corps {
+        position: absolute;
+        display: none;
+        width: 100%;
+        top: 100%;
+        left: 0;
+        right: 0;
+
+        ._from-large & {
+            @include screen(not-large) {
+                position: static;
+                display: block;
+            }
+        }
+    }
+
+    &:hover &-corps {
+        display: block;
+    }
+
+    &-item a {
+        display: block;
+        padding: pas(s) 0;
+        @extend %color-std;
+    }
+}
+
+/*
+---------------------------
+ Panier
+---------------------------
+*/
+
+.panier {
+    &-entete {
+        padding: pas(m) 0;
+        font-weight: bold;
+    }
+
+    &-imageproduit {
+        text-align: center;
+        img {
+            max-width: 300px;
+        }
+    }
+
+    &-description {
+        @extend %color-gris;
+        margin: pas(s) 0 pas(m);
+    }
+
+    &-titreproduit {
+        @include fontsize(t7);
+        font-weight: bold;
+    }
+
+    &-prix {
+        @extend %color-prix;
+    }
+
+    &-prixtotal {
+        @include fontsize(t2);
+        line-height: 1em;
+        font-weight: lighter;
+    }
+}
+
+/*
+-----------------
+ carrousel
+ (site de recrutement)
+-----------------
+*/
+
+.carrousel {
+    background: $gris-16 url('../imgs/recrutement/fond-carrousel-large.jpg') center / auto 100% no-repeat;
+    position: relative;
+    min-height: 400px;
+
+    @include screen(small) {
+        min-height: 500px;
+    }
+
+    &-item {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: 0;
+        width: 100%;
+        background: center / auto 100% no-repeat;
+        opacity: 0;
+        transform: translateZ(0);
+        transition: opacity 1.2s ease;
+
+        &.est-actif {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .aligne {
+            height: 100%;
+            padding-top: 50px;
+        }
+    }
+
+    &-conteneur {
+        @include screen(from-large) {
+            @extend .conteneur;
+        }
+
+        @include screen(not-large) {
+            max-width: 80%;
+            margin: 0 auto;
+        }
+    }
+
+    &-titre {
+        margin: pas(l) 0 pas(s);
+    }
+
+    &-intro {
+        @include fontsize(t6);
+        margin: pas(s) 0;
+    }
+
+    &-pagination {
+        position: absolute;
+        bottom: pas(m);
+        z-index: 2;
+        width: 100%;
+    }
+
+    &-nav {
+        position: absolute;
+        top: 50%;
+        bottom:0;
+        z-index: 2;
+        cursor: pointer;
+
+        &._precedent:before,
+        &._suivant:before {
+            font-size: 30px;
+        }
+
+        &._precedent {
+            @extend %icon;
+            @extend .icon-Chevron-gauche-XL;
+            left: 5%;
+        }
+        &._suivant {
+            @extend %icon;
+            @extend .icon-Chevron-droite-XL;
+            right: 5%;
+        }
+
+        @include screen(small) {
+            display: none;
+        }
+    }
+
+    &-navmobile {
+        display: none;
+        @include screen(small) {
+            display: inline-block;
+        }
+    }
+
+    &-nav,
+    &-navmobile,
+    &-pagination {
+        user-select: none;
+    }
+
+    &-promo {
+        display: flex;
+        margin: 0 auto;
+        padding: pas(xxl) pas(l) pas(xl);
+        height: 100%;
+        width: 100%;
+        @include screen(medium) {
+            max-width: 320px;
+        }
+
+        @include screen(medium) {
+            max-width: 767px;
+        }
+
+        @include screen(from-large) {
+            max-width: 1023px;
+        }
+    }
+
+    &-promodevice {
+        display: none;
+        height: 100%;
+        width: 100%;
+        background: center center / contain no-repeat;
+
+        &._small {
+            @include screen(small) {
+                display: block;
+            }
+        }
+
+        &._medium {
+            @include screen(medium) {
+                display: block;
+                max-width: 767px;
+            }
+        }
+
+        &._large {
+            @include screen(from-large) {
+                display: block;
+                max-width: 1023px;
+            }
+        }
+    }
+}
+
+
+
+/*
+------------------------
+Popin (popup de en overlay)
+------------------------
+*/
+
+.popin {
+    @include background(alpha_sombre);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 4;
+    height: 100vh;
+    opacity: 1;
+    transition: opacity 0.2s ease-out;
+
+    @include screen(small) {
+        padding: pas(l);
+    }
+
+    &:not(.est-visible) {
+        height: 0;
+        padding: 0;
+        opacity: 0;
+        overflow: hidden;
+    }
+
+    &-conteneur {
+        @include background(clair);
+        max-width: 850px;
+        max-height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        opacity: 0;
+        transform: translateZ(0);
+        transform: translateY(- 50px);
+        transition:
+            opacity 0.45s ease-out 0.1s,
+            transform 0.6s ease-out 0.05s;
+
+        @include screen(small) {
+            align-self: flex-start;
+        }
+
+        .est-visible > & {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    &-header {
+        @include background(header);
+        @include color(negatif);
+        padding: pas(m);
+    }
+
+    &-contenu {
+        min-height: 70px;
+        padding: pas(l);
+
+        @include screen(small) {
+            padding: pas(m);
+        }
+
+    }
+
+    &-fermer {
+        @include color(negatif);
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+/*
+-----------------
+ bloc offrir
+ (site de recrutement)
+-----------------
+*/
+.offrir {
+    background: #f5f7f9 center / auto 100% no-repeat;
+
+    @include screen(from-large) {
+        min-height: 640px;
+        background-image: url('../imgs/recrutement/fond-offrir-large.jpg');
+    }
+
+    @include screen(medium) {
+        min-height: 640px;
+        background-image: url('../imgs/recrutement/fond-offrir-medium.jpg');
+    }
+
+    @include screen(small) {
+        min-height: 440px;
+        background-image: url('../imgs/recrutement/fond-offrir-small.jpg');
+        text-align: center;
+    }
+
+    &-texte {
+        margin-top: pas(xl);
+
+        @include screen(small) {
+            margin-top: pas(m);
+        }
+    }
+}
+
+
+/*
+-----------------
+Formules
+(site de recrutement)
+-----------------
+*/
+
+.formules {
+    background: url('../imgs/recrutement/fond-formules.jpg') bottom / 100% auto no-repeat;
+    text-align: center;
+
+    @include screen(medium) {
+        &-corps {
+            padding: 0 pas(l) pas(m);
+            text-align: left;
+        }
+        &-desc {
+            padding-right: pas(l);
+        }
+        &-droite {
+            padding-top: pas(s);
+        }
+    }
+
+    &-soustitre {
+        margin-bottom: 0;
+    }
+
+    &-engagement {
+        @extend %color-gris;
+    }
+
+    &-prixconteneur {
+        @extend %color-prix;
+        margin: pas(m) 0;
+    }
+
+    &-prix {
+        @include fontsize(t1);
+        display: inline-block;
+        margin-right: pas(m);
+        font-weight: lighter;
+    }
+
+    &-prixduree {
+        display: inline-block;
+        text-align: left;
+    }
+
+    // dans le cas d'une offre à l'unité
+    &-item._monoligne {
+
+        .t5 {
+            margin: 0;
+        }
+
+        @include screen(from-medium) {
+            text-align: left;
+
+            .formules-prixconteneur {
+                margin: 0 pas(l) 0 0;
+            }
+
+            .formules-corps {
+                padding-top: pas(m);
+            }
+        }
+    }
+}
+
+
+/*
+-----------------
+ offres
+ (site de recrutement)
+-----------------
+*/
+
+.offres {
+
+    &-item {
+        margin: pas(l) 0;
+
+        @include screen(small) {
+            margin: 0 pas(s);
+            padding: pas(l) 0;
+        }
+    }
+
+    > div:not(:last-child) > .offres-item {
+        @include border($cardinal: right);
+
+        @include screen(small) {
+            border-right: 0;
+            @include border($cardinal: bottom);
+        }
+    }
+
+    &-conteneur {
+        padding: 0 pas(l);
+        margin: 0 auto;
+
+        @include screen(small) {
+            padding: 0;
+            max-width: 300px;
+        }
+    }
+
+    &-icone {
+        display: inline-block;
+        margin: pas(m) 0 pas(m);
+        width: 101px;
+        height: 65px;
+        background: center center / auto no-repeat;
+
+        &._etudiant {
+            background-image: url('../imgs/recrutement/icone-etudiant.svg');
+        }
+
+        &._professionnel {
+            background-image: url('../imgs/recrutement/icone-professionels.svg');
+        }
+
+        &._etranger {
+            background-image: url('../imgs/recrutement/icone-etranger.svg');
+        }
+    }
+
+    &-titre {
+        margin: pas(m) 0;
+    }
+}
+
+/*
+------------------
+page gamme entete
+------------------
+*/
+
+.gammeentete {
+    @extend .clearfix;
+
+    &.conteneur {
+        @include screen(from-medium) {
+            padding-top: pas(xl);
+            padding-bottom: pas(xl);
+        }
+    }
+
+    &-entete {
+        @include screen(from-large) {
+            float: right;
+            width: 50%;
+            padding-left: pas(m);
+        }
+        @include screen(not-large) {
+            padding: pas(m);
+            text-align: center;
+        }
+        p {
+            margin: pas(s) 0;
+        }
+    }
+
+    &-titre {
+        margin: pas(s) 0;
+    }
+
+    &-texte {
+        @include screen(from-medium) {
+            float: right;
+            width: 50%;
+            padding-left: pas(m);
+        }
+    }
+
+    &-visuel {
+        text-align: center;
+
+        @include screen(from-medium) {
+            float: left;
+            width: 50%;
+            padding-right: pas(m);
+        }
+
+        img {
+            max-width: 520px;
+
+            @include screen(small) {
+                max-width: 100%;
+            }
+        }
+    }
+}
+
+
+/*
+------------------
+page gamme selecteur
+------------------
+*/
+
+.choixduree {
+
+    &-item {
+        padding: pas(m) pas(m);
+
+        &:hover,
+        &.est-actif {
+            @include background(gris);
+            cursor: pointer;
+        }
+    }
+
+    &-titre {
+        // pour cohabiter avec offres spéciales
+        @include screen(from-medium) {
+            float: left;
+            margin-right: pas(m);
+        }
+    }
+
+    &-prix {
+        @include fontsize(t1);
+        display: inline-block;
+        margin-right: pas(m);
+        font-weight: lighter;
+    }
+
+    &-prixduree {
+        display: inline-block;
+        text-align: left;
+    }
+
+    &-promo {
+        @extend %color-gris;
+
+        @include screen(from-medium) {
+            text-align: right;
+        }
+    }
+
+    &-prixbarre {
+        @include fontsize(m);
+    }
+
+    &-input {
+        padding-right: pas(m);
+    }
+
+    &-type {
+        padding: pas(l) pas(m) pas(m);
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+    &-liste {
+
+        @include screen(from-medium) {
+            @include border($cardinal:left);
+        }
+
+        @include screen(small) {
+            @include border($cardinal:top);
+        }
+    }
+}
+
+
+/*
+--------------------
+offre spéciale
+( dans le choix de la duréee de l'abo )
+--------------------
+*/
+
+.offrespeciale {
+    width: 350px;
+    max-width: 100%;
+    padding: pas(s) pas(m);
+
+    @include screen(from-medium) {
+        margin-bottom: 0;
+    }
+
+    @include screen(small) {
+        margin-bottom: pas(s);
+
+        &.offrespeciale {
+            margin-top: pas(m);
+        }
+    }
+
+    &-texte {
+        padding: 0 pas(m) 0 pas(s);
+    }
+}
+
+
+/*
+--------------------
+ex: page offrir et international
+entete
+--------------------
+*/
+.enteteinfo {
+    margin-bottom: pas(m);
+
+    &-titre {
+        @include screen(from-medium) {
+            margin: 0 0 pas(xl) 0;
+        }
+        @include screen(small) {
+            margin: 0;
+        }
+    }
+
+    &-chevron {
+        margin-right: pas(m);
+        margin-left: pas(s);
+        display: inline-block;
+        background: url('../imgs/recrutement/large-thin-arrow-right.svg') top center / contain no-repeat;
+        width: 40px;
+        height: 50px;
+    }
+
+    &-icon {
+        width: 32px;
+        height: 32px;
+        background: center center / contain no-repeat;
+
+        &._imprimer {
+            background-image: url('../imgs/recrutement/icon-print.svg');
+        }
+
+        &._journal {
+            width: 39px;
+            background-image: url('../imgs/recrutement/icon-journal.svg');
+        }
+
+        &._calendrier {
+            background-image: url('../imgs/recrutement/icon-calendar.svg');
+        }
+    }
+
+    &-fond {
+        background: $gris-16 right / auto 100% no-repeat;
+
+        &._offrir {
+            background-image: url('../imgs/recrutement/Offrir-abo-fond-entete.jpg');
+        }
+        &._international {
+            background-image: url('../imgs/recrutement/international-fond-entete.jpg');
+        }
+    }
+
+    &-guide {
+        @include screen(small) {
+            display: none;
+        }
+    }
+
+    &.conteneur {
+        padding: pas(xxl) (pas(xxl)*5) pas(xxl) pas(xxl);
+        min-height: 300px;
+
+        @include screen(medium) {
+            padding-right: pas(xxl);
+        }
+
+        @include screen(small) {
+            padding: pas(xl) pas(m);
+        }
+    }
+}

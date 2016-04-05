@@ -1,0 +1,126 @@
+/**
+ * grid system du site :
+ *
+ * mobile-first: les valeurs par defaut concernent les mobiles et + haut
+ * par defaut une grille-cell => 100% de la  largeur
+ * ex : ( grille-cell _1sur2-from-medium ) = 100% en mobile, 50% à partir de medium
+ */
+
+.grille {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    flex-flow: row wrap;
+
+    &._aligne-centre {
+        align-items: center;
+    }
+
+    &._justifie-centre {
+      justify-content: center;
+    }
+
+    &._espace-autour {
+        justify-content: space-around;
+    }
+
+    // permet d'égaliser des colonnes en hauteur
+    &._hauteur-egale > &-cell {
+      display: flex;
+    }
+
+    &-cell {
+        flex: 0 0 100%;
+
+        // permet de gérer des alignement verticaux
+        &._aligne-haut {
+            align-self: flex-start;
+        }
+
+        &._aligne-centre {
+            align-self: center;
+        }
+
+        &._aligne-bas {
+            align-self: flex-end;
+        }
+    }
+}
+
+@include responsive-modifier(
+    $context: 'grille',
+    $modifier: '_goutiere',
+    $bps: 'all' 'medium'
+) {
+
+    margin-left: -($goutiere / 2);
+    margin-right: -($goutiere / 2);
+
+    > .grille-cell {
+        padding-left: ($goutiere / 2);
+        padding-right: ($goutiere / 2);
+    }
+}
+
+
+@include responsive-modifier(
+    $context: 'grille',
+    $modifier: '_goutiere-large',
+    $bps: 'all' 'medium'
+) {
+    margin-left: -($goutiere-large / 2);
+    margin-right: -($goutiere-large / 2);
+
+    > .grille-cell {
+        padding-left: ($goutiere-large / 2);
+        padding-right: ($goutiere-large / 2);
+    }
+}
+
+@include responsive-modifier(
+    $context: 'grille-cell',
+    $modifier: '_auto',
+    $bps: 'all' 'medium' 'from-medium' 'from-large'
+) {
+    flex: 1;
+}
+
+@include responsive-modifier(
+    $context: 'grille-cell',
+    $modifier: '_initial',
+    $bps: 'all' 'from-medium'
+) {
+    flex: initial;
+}
+
+@include responsive-modifier(
+    $context: 'grille-cell',
+    $modifier: '_taillepub',
+    $bps: 'from-medium' 'from-large'
+) {
+    flex: 0 0 300px;
+}
+
+@include responsive-modifier(
+    $context: 'grille-cell',
+    $modifier: '_1sur3',
+    $bps: 'medium' 'from-large'
+) {
+    flex: 0 0 33.333%;
+}
+
+@include responsive-modifier(
+    $context: 'grille-cell',
+    $modifier: '_1sur4',
+    $bps:'from-medium'
+) {
+    flex: 0 0 25%;
+}
+
+@include responsive-modifier(
+    $context: 'grille-cell',
+    $modifier: '_1sur8',
+    $bps: 'from-medium'
+) {
+    flex: 0 0 12.5%;
+}

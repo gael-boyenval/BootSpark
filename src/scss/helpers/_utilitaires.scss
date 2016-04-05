@@ -1,0 +1,44 @@
+/*
+---------------------------
+ reset de la marge haute
+ pour le premier element typo
+ d'un block donné
+---------------------------
+*/
+
+.reset-haut {
+    > p:nth-child(1),
+    > h1:nth-child(1),
+    > h2:nth-child(1),
+    > h3:nth-child(1),
+    > h4:nth-child(1) {
+        margin-top: 0;
+    }
+}
+
+/*
+---------------------------
+ visibility helpers
+ /!\ REQUIS PAR ARVATO (JAVASCRIPT)
+---------------------------
+*/
+.hide,
+.hidden {
+    display: none !important;
+}
+
+/*
+-------------------------
+    clearfix
+-------------------------
+*/
+
+.clearfix {
+    &:after {
+        content: "";
+        clear: both;
+        display: block;
+        height: 0;
+        visibility: hidden;
+    }
+}
