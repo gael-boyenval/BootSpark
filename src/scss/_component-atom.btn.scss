@@ -1,0 +1,19 @@
+/*
+---------------------------
+ bouttons
+---------------------------
+*/
+
+.a-btn {
+    display: inline-block;
+    vertical-align: baseline;
+    width: auto;
+    cursor: pointer;
+
+    &--action {
+        &:hover {
+        }
+    }
+
+    &--small {}
+}

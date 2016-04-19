@@ -1,0 +1,53 @@
+/*------------------------------------*\
+    DECORATIVE PROPERTIES MIXINS
+\*------------------------------------*/
+
+/**
+ * for design sanity purposes, use mixins for set all decoratives properties
+ * Why ? these mixins are 'propertie : value' couples,
+ * they prevent css dev to introduce bad usage of a color / border-witdh, etc…
+ */
+
+
+@mixin background-color($bgcolor) {
+    background-color: map-get($backgrounds, $bgcolor);
+}
+
+@mixin border($color: std, $cardinal: "", $width: std){
+    $color: map-get($border-colors, $color);
+    $width: map-get($border-widths, $width);
+    $cardinal: if($cardinal == "", "", #{"-"}#{$cardinal});
+    border#{$cardinal}: solid $width $color;
+}
+
+@mixin border-radius($position:top, $radius:$border-radius-std ) {
+    @if $position == top {
+        border-radius: $radius $radius 0 0;
+    } @else if $position == bottom {
+        border-radius:  0 0 $radius $radius;
+    } @else if $position == left {
+        border-radius:  $radius 0 0 $radius;
+    } @else if $position == right {
+        border-radius: $radius 0 0 $radius;
+    }
+}
+
+@mixin font-size($variante) {
+    $item: map-get($config-font-size, $variante);
+
+    @if type-of($item) == map {
+        @each $device, $fs in $item {
+            @include screen ($device) {
+                font-size: $fs;
+            }
+        }
+    } @elseif type-of($item) == number {
+        font-size: $item;
+    } @else {
+        @debug ("erreur : mixin font-size => type-of($item) : " + type-of($item));
+    }
+}
+
+@mixin color($color) {
+    color: map-get($font-colors, $color);
+};

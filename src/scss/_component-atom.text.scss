@@ -1,0 +1,117 @@
+/*---------------------------*\
+ Titres et styles de textes
+\*---------------------------*/
+
+.t1,
+.t2,
+.t3,
+.t4,
+.t5,
+.t6,
+.t7 {
+    font-weight: normal;
+}
+
+.t1 {
+    @include fontsize(t1);
+}
+
+.t2 {
+    @include fontsize(t2);
+}
+
+.t3 {
+    @include fontsize(t3);
+}
+
+.t4 {
+    @include fontsize(t4);
+}
+
+.t5 {
+    @include fontsize(t5);
+}
+
+.t6 {
+    @include fontsize(t6);
+}
+
+.t7 {
+    @include fontsize(t7);
+}
+
+/*
+---------------------------
+ liens
+---------------------------
+*/
+a {
+    @extend %color-liens;
+    text-decoration: none;
+
+    &:hover {
+        @extend %color-liens-hover;
+        text-decoration: underline;
+    }
+
+    &:before {
+        display: inline-block;
+    }
+
+    &.textelarge {
+        font-weight: bold;
+    }
+}
+
+.itemfleche {
+    @include icon;
+    @extend .icon-Chevron-droite;
+
+    &:before {
+        font-size: 10px;
+        font-weight: inherit;
+        display: inline-block;
+    }
+}
+
+
+
+
+/*
+---------------------------
+ spinner attente
+---------------------------
+*/
+.animationattente {
+    display: block;
+    position: relative;
+    min-width: 36px;
+    min-height: 36px;
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 16px;
+        height: 16px;
+        margin-top: -10px;
+        margin-left: -10px;
+        border-radius: 50%;
+        border: 2px solid rgba(0, 0, 0, .3);
+        border-top-color: rgba(0, 0, 0, .6);
+        animation: rotation .6s linear infinite;
+    }
+}
+
+
+
+.liste {
+    padding-left: pas(l);
+    margin: pas(s) 0;
+
+    li {
+        margin: pas(s) 0;
+        list-style: disc;
+    }
+}

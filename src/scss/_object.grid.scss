@@ -1,0 +1,108 @@
+/**
+ * grid system du site :
+ *
+ * mobile-first: les valeurs par defaut concernent les mobiles et + haut
+ * par defaut une grid_cell => 100% de la  largeur
+ * ex : ( grid_cell--1of2-from-medium ) = 100% en mobile, 50% à partir de medium
+ */
+
+$goutiere: pas(m);
+$goutiere-large: pas(l);
+
+.oo-grid {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+
+    &--v-centered              { align-items: center; }
+    &--h-centered              { justify-content: center; }
+    &--around                  { justify-content: space-around; }
+    &--stretch                 { align-items: stretch; }
+    &--stretch > &_cell        { display: flex; }
+
+    &_cell {
+        flex: 0 0 100%; // 100% by default
+
+        &--align-start         { align-self: flex-start; }
+        &--align-center        { align-self: center;     }
+        &--align-end           { align-self: flex-end;   }
+    }
+}
+
+@include responsive-modifier(
+    $context: 'grid',
+    $modifier: 'gutter',
+    $bps: 'all' 'medium'
+) {
+
+    margin-left: -($gutter / 2);
+    margin-right: -($gutter / 2);
+
+    > .grid_cell {
+        padding-left: ($gutter / 2);
+        padding-right: ($gutter / 2);
+    }
+}
+
+
+@include responsive-modifier(
+    $context: 'grid',
+    $modifier: 'gutter-large',
+    $bps: 'all' 'medium'
+) {
+    margin-left: -($gutter-large / 2);
+    margin-right: -($gutter-large / 2);
+
+    > .grid_cell {
+        padding-left: ($gutter-large / 2);
+        padding-right: ($gutter-large / 2);
+    }
+}
+
+@include responsive-modifier(
+    $context: 'grid_cell',
+    $modifier: 'auto',
+    $bps: 'all' 'medium' 'from-medium' 'from-large'
+) {
+    flex: 1;
+}
+
+@include responsive-modifier(
+    $context: 'grid_cell',
+    $modifier: 'initial',
+    $bps: 'all' 'from-medium'
+) {
+    flex: initial;
+}
+
+@include responsive-modifier(
+    $context: 'grid_cell',
+    $modifier: 'pub-size',
+    $bps: 'from-medium' 'from-large'
+) {
+    flex: 0 0 300px;
+}
+
+@include responsive-modifier(
+    $context: 'grid_cell',
+    $modifier: '1of3',
+    $bps: 'medium' 'from-large'
+) {
+    flex: 0 0 33.333%;
+}
+
+@include responsive-modifier(
+    $context: 'grid_cell',
+    $modifier: '1of4',
+    $bps:'from-medium'
+) {
+    flex: 0 0 25%;
+}
+
+@include responsive-modifier(
+    $context: 'grid_cell',
+    $modifier: '1of8',
+    $bps: 'from-medium'
+) {
+    flex: 0 0 12.5%;
+}

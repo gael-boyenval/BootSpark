@@ -1,0 +1,46 @@
+/*-------------------------*  CONTENTS
+\*-------------------------*/
+/* SETTINGS */
+/* --------------------------------------------------------------------------------- *                SETTINGS AND THEMING
+\* --------------------------------------------------------------------------------- */
+body {
+  color: blue; }
+
+/* --------------------------- *    DEVICES SIZES AND
+    MEDIAS QUERIES
+\* --------------------------- */
+/*
+---------------------------
+Configuration colors
+/!\ Never use has it in scss files
+---------------------------
+*/
+/*
+---------------------------
+ALLOWED GRAPHIC PROPERTIES
+---------------------------
+*/
+/*
+---------------------------
+typo
+---------------------------
+*/
+/*
+-------------------------------
+margin & padding utilities
+-------------------------------
+*/
+/* TOOLS */
+/* BASE */
+/*
+ * OBJECTS
+ * Wrappers.............Wrapping and constraining elements.
+ *
+ * COMPONENTS
+ * Page-head............The main page header.
+ * Page-foot............The main page footer.
+ * Buttons..............Button elements.
+ *
+ * TRUMPS
+ * Text.................Text helpers.
+ */

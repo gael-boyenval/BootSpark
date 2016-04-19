@@ -1,0 +1,156 @@
+/* --------------------------------------------------------------------------------- *\
+                SETTINGS AND THEMING
+\* --------------------------------------------------------------------------------- */
+
+/* --------------------------- *\
+    DEVICES SIZES AND
+    MEDIAS QUERIES
+\* --------------------------- */
+
+$device-large-min :     102.4rem;
+$device-medium-max :    $device-large-min - .1rem;
+$device-medium-min :    76.8rem;
+$device-small-max :     $device-medium-min - .1rem;
+$device-small-min :     32rem;
+
+// breakpoints //
+$breakpoints: (
+    'not-large': 'max-width:' $device-medium-max,
+    'small': 'max-width:' $device-small-max,
+    'from-medium': 'min-width:' $device-medium-min,
+    'medium': 'min-width: '$device-medium-min') and (max-width: ' $device-medium-max,
+    'from-large': 'min-width:' $device-large-min
+);
+
+
+/*
+---------------------------
+Configuration colors
+/!\ Never use has it in scss files
+---------------------------
+*/
+
+// messages & actions
+$error-ui-color:      hsla(0, 100, 50%, 1);
+$warning-ui-color:    hsla(40, 100, 50%, 1);
+$neutral-ui-color:    hsla(0, 0, 50%, 1);
+$valide-ui-color:     hsla(120, 100, 50%, 1);
+$action-ui-color:     hsla(200, 100, 50%, 1);
+
+// brand univer colors
+$brand-base-color:    hsla(0, 0, 15%, 1);
+
+// utility transparent colors
+$alpha-dark:          hsla(0, 0, 0, 0.2);
+$alpha-light:         hsla(0, 0, 100%, 0.2);
+
+// lighter-color (generaly white)
+$lighter-color:       hsla(0, 0, 100%, 1);
+
+// greys (delete or modify them)
+$grey-lightest:       hsla(0, 0, 90%, 1);
+$grey-lighter:        hsla(0, 0, 80%, 1);
+$grey-light:          hsla(0, 0, 70%, 1);
+$grey-dark:           hsla(0, 0, 15%, 1);
+$grey-darker:         hsla(0, 0, 10%, 1);
+$grey-darkest:        hsla(0, 0, 5%, 1);
+
+/*
+---------------------------
+ALLOWED GRAPHIC PROPERTIES
+---------------------------
+*/
+
+// allowed background-colors :
+$backgrounds: (
+    lightest: #000
+);
+
+// allowed border-widths :
+$border-widths: (
+    std:     0.1rem,
+    l:       0.3rem
+);
+
+// allowed border-colors :
+$border-colors: (
+    std:     $alpha-dark
+);
+
+// allowed border-colors :
+$border-radius: (
+    s:       0.2rem,
+    std:     0.3rem,
+    l:       0.5rem
+);
+
+// allowed transition duration :
+$transition-durations: (
+    short:    0.1s,
+    std:      0.3s,
+    long:     0.8s
+);
+
+// allowed font-colors :
+$font-colors: ();
+
+
+// alowed spacing values
+$spacing-increment: 0.4rem;
+
+$spacing: (
+    xs:      $spacing-increment,
+    m:       $spacing-increment * 4,
+    l:       $spacing-increment * 6,
+    xl:      $spacing-increment * 10,
+    xxl:     $spacing-increment * 18
+);
+
+/*
+---------------------------
+typo
+---------------------------
+*/
+
+$font-size: (
+    t1: (
+        'from-large': 42px,
+        'medium': 36px,
+        'small': 32px
+    ),
+    t2: (
+        'from-large': 34px,
+        'medium': 32px,
+        'small': 28px
+    ),
+    t3: (
+        'from-large': 32px,
+        'medium': 30px,
+        'small': 26px
+    ),
+    t4: (
+        'from-medium': 28px,
+        'small': 24px
+    ),
+    t5: (
+        'from-medium': 24px,
+        'small': 22px
+    ),
+    t6: 22px,
+    t7: 20px,
+    m: 16px,
+    std: 14px,
+    s: 13px,
+    xs: 11px
+);
+
+
+
+/*
+-------------------------------
+margin & padding utilities
+-------------------------------
+*/
+
+// arrowed blocks size
+$arrow-size: 10px;

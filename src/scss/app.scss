@@ -1,7 +1,29 @@
-@import '_theme.scss';
-@import '_layout.scss';
-@import '_layoutV2.scss';
-@import '_utilitaires.scss';
-@import '_atoms.scss';
-@import '_molecules.scss';
-@import '_organismes.scss';
+/*-------------------------*\
+  CONTENTS
+\*-------------------------*/
+
+/* SETTINGS */
+@import '_settings.theme.scss';
+//..........Globally-available variables and config
+
+/* TOOLS */
+//@import '_tools.decorativ-props.scss'; //...decoratives properties tools.
+//@import '_tools.responsive.scss'; //........layout / breakpoint / responsive.
+
+/* BASE */
+//@import '_base.global.scss';//..............Global settings like * / body / html
+//@import '_base.text.scss';//................Type selectors for text
+//@import '_base.form.scss';//................Type selectors for inputs / selects / labels
+
+/*
+ * OBJECTS
+ * Wrappers.............Wrapping and constraining elements.
+ *
+ * COMPONENTS
+ * Page-head............The main page header.
+ * Page-foot............The main page footer.
+ * Buttons..............Button elements.
+ *
+ * TRUMPS
+ * Text.................Text helpers.
+ */

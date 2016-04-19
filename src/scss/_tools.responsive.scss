@@ -1,0 +1,33 @@
+/*
+---------------------------
+responsive utilities
+---------------------------
+*/
+
+@mixin screen($breakpoint) {
+    $rule: map-get($breakpoints, $breakpoint);
+    @media screen and ($rule) {
+        @content;
+    }
+}
+
+// RESPONSIVE MODIFIER //
+// /!\ requis : il faut que les règles 'tous devices' soient déclarés séparément avant.
+// avec le regroupement auto des media-queries via postCSS
+// l'ordre des declarartion est bon
+
+@mixin responsive-modifier($context, $modifier, $bps) {
+    @each $key in $bps {
+        @if $key == 'all' { // pour toutes
+            .#{$context}--#{$modifier} {
+                @content;
+            }
+        } @else {
+            .#{$context}--#{$modifier}/@#{$key} {
+                @include screen($key) {
+                    @content;
+                }
+            }
+        }
+    }
+}
