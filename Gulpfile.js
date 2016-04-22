@@ -10,7 +10,10 @@ var gulp            = require('gulp'),
     minifyCss       = require('gulp-minify-css'),
     gcmq            = require('gulp-group-css-media-queries'),
     rename          = require('gulp-rename'),
-    babel           = require('rollup-plugin-babel');
+    babel           = require('rollup-plugin-babel'),
+    markdownpdf     = require('gulp-markdown-pdf'),
+    concat          = require('gulp-concat'),
+    gitbook         = require('gitbook');
 
 //base paths
 const src_base_url = 'src';
@@ -63,12 +66,11 @@ gulp.task('js:build', function(){
 /*------ SCSS bundler ------*/
 
 gulp.task('css:build', function() {
-  return gulp.src(source_paths.scss)
-  	.pipe(sourcemaps.init().on('error', onError))
+    return gulp.src(source_paths.scss)
+    .pipe(sourcemaps.init().on('error', onError))
     .pipe(changed(dest_paths.css).on('error', onError))
     .pipe(sass().on('error', onError))
     .pipe(gulp.dest(dest_paths.css))
-    .pipe(notify("scss compiled : <%= file.relative %>!"))
     .pipe(autoprefixer({browsers: ['> 1%','last 2 versions','ie > 8'],cascade:false}).on('error', onError))
     .pipe(minifyCss({keepSpecialComments: 0}).on('error', onError))
     .pipe(gcmq().on('error', onError))
@@ -92,3 +94,23 @@ gulp.task('build:all', [
     'css:build',
     'index:build'
 ]);
+
+/*------------------------------------------------*\
+                DOCUMENTATION
+\*------------------------------------------------*/
+
+const src_doc_url = './src/doc';
+const dest_doc_url = './doc';
+
+gulp.task('doc:build', function (cb) {
+    var book = new gitbook.Book(src_doc_url+'/', {
+        "config": {
+            "output": dest_doc_url+"/"
+        }
+    });
+    book.parse().then(function(){
+        return book.generate("website");
+    }).then(function(){
+        cb();
+    });
+});
