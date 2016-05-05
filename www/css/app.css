@@ -1,11 +1,9 @@
+@charset "UTF-8";
 /*-------------------------*  CONTENTS
 \*-------------------------*/
 /* SETTINGS */
 /* --------------------------------------------------------------------------------- *                SETTINGS AND THEMING
 \* --------------------------------------------------------------------------------- */
-body {
-  color: blue; }
-
 /* --------------------------- *    DEVICES SIZES AND
     MEDIAS QUERIES
 \* --------------------------- */
@@ -30,6 +28,126 @@ typo
 margin & padding utilities
 -------------------------------
 */
+* {
+  box-sizing: border-box;
+  outline: none;
+  margin: 0;
+  padding: 0; }
+
+html {
+  font-size: 62.5%; }
+
+body {
+  font-size: 1.6rem;
+  margin: 0;
+  padding: 0; }
+
+/*---------------------------*        Titres
+\*---------------------------*/
+h1, h2, h3, h4, h5, h6 {
+  font-size: 1.2rem;
+  font-weight: normal; }
+
+/*---------------------------* formulaires & champs
+\*---------------------------*/
+[type="text"],
+[type="password"],
+[type="email"],
+[type="date"],
+[type="datetime"],
+[type="color"],
+[type="date"],
+[type="datetime-local"],
+[type="month"],
+[type="number"],
+[type="search"],
+[type="tel"],
+[type="time"],
+[type="url"],
+[type="week"],
+textarea {
+  display: block;
+  width: 100%;
+  max-width: 800px;
+  box-sizing: padding-box;
+  padding: pas(m);
+  margin: 0 1;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  appearance: none; }
+  [type="text"]:focus,
+  [type="password"]:focus,
+  [type="email"]:focus,
+  [type="date"]:focus,
+  [type="datetime"]:focus,
+  [type="color"]:focus,
+  [type="date"]:focus,
+  [type="datetime-local"]:focus,
+  [type="month"]:focus,
+  [type="number"]:focus,
+  [type="search"]:focus,
+  [type="tel"]:focus,
+  [type="time"]:focus,
+  [type="url"]:focus,
+  [type="week"]:focus,
+  textarea:focus {
+    outline: none; }
+
+select {
+  width: 100%; }
+
+button,
+input,
+select,
+textarea {
+  vertical-align: baseline; }
+
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0; }
+
+/*---------------------------* Lists
+\*---------------------------*/
+nav ul {
+  list-style: none; }
+
+ul, li {
+  list-style: none;
+  padding-left: 0;
+  margin: 0; }
+
+/*---------------------------* some reset values
+\*---------------------------*/
+img {
+  border: 0; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+button {
+  margin-top: 0;
+  margin-bottom: 0; }
+
+/*---------------------------* adresses
+\*---------------------------*/
+address {
+  font-style: normal; }
+
+/*---------------------------* filets, séparateurs
+\*---------------------------*/
+hr {
+  border: 0;
+  display: block;
+  margin: pas(m) auto;
+  height: 0px; }
+  hr._petit {
+    width: 80px; }
+  hr._sansmarge {
+    margin: 0 auto; }
+
 /* TOOLS */
 /* BASE */
 /*

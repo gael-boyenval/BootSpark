@@ -13,16 +13,6 @@ $device-medium-min :    76.8rem;
 $device-small-max :     $device-medium-min - .1rem;
 $device-small-min :     32rem;
 
-// breakpoints //
-$breakpoints: (
-    'not-large': 'max-width:' $device-medium-max,
-    'small': 'max-width:' $device-small-max,
-    'from-medium': 'min-width:' $device-medium-min,
-    'medium': 'min-width: '$device-medium-min') and (max-width: ' $device-medium-max,
-    'from-large': 'min-width:' $device-large-min
-);
-
-
 /*
 ---------------------------
 Configuration colors
@@ -31,11 +21,11 @@ Configuration colors
 */
 
 // messages & actions
-$error-ui-color:      hsla(0, 100, 50%, 1);
-$warning-ui-color:    hsla(40, 100, 50%, 1);
-$neutral-ui-color:    hsla(0, 0, 50%, 1);
-$valide-ui-color:     hsla(120, 100, 50%, 1);
-$action-ui-color:     hsla(200, 100, 50%, 1);
+$error-base-color:    hsla(0, 100, 50%, 1);
+$warning-base-color:  hsla(40, 100, 50%, 1);
+$neutral-base-color:  hsla(0, 0, 50%, 1);
+$valide-base-color:   hsla(120, 100, 50%, 1);
+$action-base-color:   hsla(200, 100, 50%, 1);
 
 // brand univer colors
 $brand-base-color:    hsla(0, 0, 15%, 1);
@@ -60,11 +50,6 @@ $grey-darkest:        hsla(0, 0, 5%, 1);
 ALLOWED GRAPHIC PROPERTIES
 ---------------------------
 */
-
-// allowed background-colors :
-$backgrounds: (
-    lightest: #000
-);
 
 // allowed border-widths :
 $border-widths: (
@@ -98,12 +83,15 @@ $font-colors: ();
 // alowed spacing values
 $spacing-increment: 0.4rem;
 
+// use fibonacci numbers : 1,2,3,5,8,13,21,34
 $spacing: (
-    xs:      $spacing-increment,
-    m:       $spacing-increment * 4,
-    l:       $spacing-increment * 6,
-    xl:      $spacing-increment * 10,
-    xxl:     $spacing-increment * 18
+    xxs:     $spacing-increment,
+    xs:      $spacing-increment * 2,
+    s:       $spacing-increment * 3,
+    m:       $spacing-increment * 5,
+    l:       $spacing-increment * 8,
+    xl:      $spacing-increment * 13,
+    xxl:     $spacing-increment * 21
 );
 
 /*

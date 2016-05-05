@@ -1,0 +1,19 @@
+{% macro elems(title = 'add title item', itemBefore = null, homeTitle = 'acceuil') %}
+    <div class="conteneur">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item _home">
+                <a href="#" itemprop="url" title="">
+                    {{ homeTitle }}
+                </a>
+            </li>
+            {% if itemBefore %}
+            <li class="breadcrumb-item">
+                <a href="#" itemprop="url">{{ itemBefore }}</a>
+            </li>
+            {% endif %}
+            <li class="breadcrumb-item">
+                <span itemprop="title">{{ title }}</span>
+            </li>
+        </ul>
+    </div>
+{% endmacro %}

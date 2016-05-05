@@ -1,0 +1,22 @@
+<div class="conteneur">
+    <ul class="liensfooter">
+        <li class="liensfooter-item">
+            <a class="liensfooter-item-lien" href="/mentions-legales" title=""> Mentions légales </a>
+        </li>
+        <li class="liensfooter-item">
+            <a class="liensfooter-item-lien" href="/cgv" title="">Conditions générales de vente</a>
+        </li>
+        <li class="liensfooter-item">
+            <a class="liensfooter-item-lien" href="http://www.lemonde.fr" title="">Le Monde.fr</a>
+        </li>
+        <li class="liensfooter-item">
+            <a class="liensfooter-item-lien" href="http://boutique.lemonde.fr" title="">La boutique en ligne</a>
+        </li>
+        <li class="liensfooter-item">
+            <a class="liensfooter-item-lien" href="/gcontacts" title="">Contactez-nous</a>
+        </li>
+        <li class="liensfooter-item">
+            <a class="liensfooter-item-lien" href="/faq" title="">FAQ</a>
+        </li>
+    </ul>
+</div>

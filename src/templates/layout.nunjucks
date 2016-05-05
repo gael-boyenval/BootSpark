@@ -1,0 +1,21 @@
+<!-- layout.nunjucks -->
+
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title> {% block metatitle %} ...layout title {% endblock %} </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/app.min.css">
+    </head>
+    <body>
+        {% block headernav %}
+            {% import "macros/header-nav.nunjucks" as nav %}
+        {% endblock %}
+
+        {% block content %} content to extend {% endblock %}
+
+        {% include "partials/footer.nunjucks" %}
+        <script src="../js/index.js"></script>
+    </body>
+</html>

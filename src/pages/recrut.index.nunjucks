@@ -1,0 +1,266 @@
+<!-- index.nunjucks -->
+{% extends "layout.nunjucks" %}
+
+{% block metatitle %} index recrutement {% endblock %}
+
+
+{% block headernav %}
+    {% import "macros/header-nav.nunjucks" as nav %}
+    {{ nav.context(zone = 'recrutement', page = 'homeRecrutement', logged = true ) }}
+{% endblock %}
+
+{% block content %}
+    <section id="carrousel-home-recrutement" class="carrousel textecentre textenegatif">
+        <div class="carrousel-items">
+            <div class="carrousel-item aligne js-item">
+                <div class="carrousel-conteneur aligne-item">
+                    <img width="auto" height="40" src="../imgs/logo_lmde.svg" alt="" />
+                    <p class="carrousel-titre t1">L’actualité de référence. Partout, tout le temps.</p>
+                    <p class="carrousel-intro">Choisissez la formule d'abonnement qui vous convient.</p>
+                </div>
+            </div>
+
+            <div class="carrousel-item aligne js-item" style="background-color: #CCC;">
+                <a href="" class="carrousel-promo aligne-item">
+                    <span class="carrousel-promodevice _large"
+                        style="background-image: url('http://placehold.it/970x280/CCCCC/ffffff')">
+                    </span>
+                    <span class="carrousel-promodevice _medium"
+                        style="background-image: url('http://placehold.it/710x280/CCCCC/ffffff')">
+                    </span>
+                    <span class="carrousel-promodevice _small"
+                        style="background-image: url('http://placehold.it/320x380/CCCCC/ffffff')">
+                    </span>
+                </a>
+            </div>
+
+            <div class="carrousel-item aligne js-item" style="background-color: #999999;">
+                <a href="" class="carrousel-promo aligne-item">
+                    <span class="carrousel-promodevice _large"
+                        style="background-image: url('http://placehold.it/970x280/99999/ffffff')">
+                    </span>
+                    <span class="carrousel-promodevice _medium"
+                        style="background-image: url('http://placehold.it/710x280/99999/ffffff')">
+                    </span>
+                    <span class="carrousel-promodevice _small"
+                        style="background-image: url('http://placehold.it/320x380/99999/ffffff')">
+                    </span>
+                </a>
+            </div>
+        </div>
+
+        <div class="carrousel-nav _precedent js-prev"></div>
+        <div class="carrousel-nav _suivant js-next"></div>
+
+        <ul class="carrousel-pagination pagination _negatif">
+            <li class="carrousel-navmobile pagination-prec"><a class="js-prev"></a></li>
+            <li class="pagination-bullet js-bullet"></li>
+            <li class="pagination-bullet js-bullet"></li>
+            <li class="pagination-bullet js-bullet"></li>
+            <li class="carrousel-navmobile pagination-suiv"><a class="js-next"></a></li>
+        </ul>
+    </section>
+
+    <div class="fondalt formules">
+        <div class="conteneur _principal">
+            <div class="grille _goutiere-large">
+
+                <div class="grille-cell">
+                    <div class="formules-item _monoligne boite">
+                        <div class="formules-corps boite-section grille">
+                            <div class="grille-cell _auto-from-medium _aligne-centre">
+                                <h3 class="t5">Le Journal numérique du 22.01.2016</h3>
+                            </div>
+                            <div class="grille-cell _initial-from-medium _aligne-centre">
+                                <div class="formules-prixconteneur">
+                                    <span class="formules-prix">2€</span>
+                                    <span class="formules-prixduree">/unité</span>
+                                </div>
+                            </div>
+                            <div class="grille-cell _initial-from-medium _aligne-centre">
+                                <span>
+                                    <a href="" class="btn _action">Acheter cette édition</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grille-cell _auto-from-large">
+                    <div class="formules-item boite">
+
+                        <div class="formules-corps boite-section grille">
+                            <div class="formules-desc grille-cell _auto-medium">
+                                <h3 class="t5">Formule Intégrale</h3>
+                                <strong class="formules-soustitre petittitre">Papier + numérique</strong>
+                                <p>Le journal + les suppléments + l'Edition abonnés sur ordinateur, mobile, tablette</p>
+                                <a href="">Plus de détails</a>
+                            </div>
+
+                            <div class="formules-droite grille-cell _1sur3-medium">
+                                <div class="formules-prixconteneur">
+                                    <span class="formules-prix">19€</span>
+                                    <span class="formules-prixduree">
+                                        par mois <br/>
+                                        pendant 3 mois
+                                    </span>
+                                </div>
+                                <span class="formules-engagement">Engagement de 3 mois</span>
+                                <p>
+                                    <a href="" class="btn _action">S'abonner</a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="boite-section formules-pied">
+                            <a href="" class="itemfleche">
+                                Voir toutes les offres Intégrale
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grille-cell _auto-from-large">
+                    <div class="formules-item boite">
+
+                        <div class="formules-corps boite-section grille">
+
+                            <div class="formules-desc grille-cell _auto-medium">
+                                <h3 class="t5">Formule Numérique</h3>
+                                <strong class="formules-soustitre petittitre">Papier + numérique</strong>
+                                <p>Le journal + les suppléments + l'Edition abonnés sur ordinateur, mobile, tablette</p>
+                                <a href="">Plus de détails</a>
+                            </div>
+
+                            <div class="formules-droite grille-cell _1sur3-medium">
+                                <div class="formules-prixconteneur">
+                                    <span class="formules-prix">19€</span>
+                                    <span class="formules-prixduree">
+                                        par mois <br/>
+                                        pendant 3 mois
+                                    </span>
+                                </div>
+                                <span class="formules-engagement">Engagement de 3 mois</span>
+                                <p>
+                                    <a href="" class="btn _action">S'abonner</a>
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="boite-section formules-pied">
+                            <a href="" class="itemfleche">
+                                Voir toutes les offres Numériques
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grille-cell _auto-from-large">
+                    <div class="formules-item boite">
+
+                        <div class="formules-corps boite-section grille">
+
+                            <div class="formules-desc grille-cell _auto-medium">
+                                <h3 class="t5">Formule Week-end</h3>
+                                <strong class="formules-soustitre petittitre">Papier + numérique</strong>
+                                <p>Le journal + les suppléments + l'Edition abonnés sur ordinateur, mobile, tablette</p>
+                                <a href="">Plus de détails</a>
+                            </div>
+
+                            <div class="formules-droite grille-cell _1sur3-medium">
+                                <div class="formules-prixconteneur">
+                                    <span class="formules-prix">19€</span>
+                                    <span class="formules-prixduree">
+                                        par mois <br/>
+                                        pendant 3 mois
+                                    </span>
+                                </div>
+                                <span class="formules-engagement">Engagement de 3 mois</span>
+                                <p>
+                                    <a href="" class="btn _action">S'abonner</a>
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="boite-section formules-pied">
+                            <a href="" class="itemfleche">
+                                Voir toutes les offres Week-end
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="grille offres conteneur _principal textecentre">
+
+        <div class="grille-cell _auto-from-medium">
+            <div class="offres-item">
+                <div class="offres-conteneur">
+                    <span class="offres-icone _etudiant"></span>
+                    <h4 class="offres-titre t7">Etudiants</h4>
+                    <hr class="_petit"/>
+                    <p class="offres-description">
+                        Vous êtes étudiant ? Bénéficiez des prix les plus bas du marché
+                    </p>
+                    <a href="" class="itemfleche">Voir nos offres</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="grille-cell _auto-from-medium">
+            <div class="offres-item">
+                <div class="offres-conteneur">
+                    <span class="offres-icone _professionnel"></span>
+                    <h4 class="offres-titre t7">Professionnels</h4>
+                    <hr class="_petit"/>
+                    <p class="offres-description">
+                        Entreprises, administrations, associations bibliothèques, établissements scolaires
+                    </p>
+                    <a href="" class="itemfleche">Voir nos offres sur mesure</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="grille-cell _auto-from-medium">
+            <div class="offres-item">
+                <div class="offres-conteneur">
+                    <span class="offres-icone _etranger"></span>
+                    <h4 class="offres-titre t7">Résidents à l'étranger</h4>
+                    <hr class="_petit"/>
+                    <p class="offres-description">
+                        L'abonnement au Monde est disponible dans plus de 200 pays.
+                    </p>
+                    <a href="" class="itemfleche">Voir nos offres International</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="fondalt offrir">
+        <div class="conteneur">
+            <div class="offrir-texte">
+                <h3 class="t4">
+                    Vous souhaitez offrir un abonnement <br/> à un ami ou un proche ?
+                </h3>
+                <a class="btn _action _petit _icone">
+                    <i class="icon-Cadeau"></i> Offrir un abonnement à un proche
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="conteneur textecentre">
+        <p> <a href="" class="gras">Déjà abonné ? Réabonnez-vous depuis votre compte Le Monde</a></p>
+        <div class="mention _bordure">
+            <p>
+                * Abonnement d’une durée minimum de 3 mois à 1 € le premier mois puis 17.90 € par mois. A l’issue des 3 mois, reconduction tacite de l’abonnement mensuellement.
+            </p>
+        </div>
+    </div>
+{% endblock %}

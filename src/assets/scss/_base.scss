@@ -10,7 +10,7 @@ html {
 }
 
 body {
-    @include fontsize(std);
+    font-size: 1.6rem;
     margin: 0;
     padding: 0;
 }
@@ -44,17 +44,12 @@ h1, h2, h3, h4, h5, h6 {
 [type="url"],
 [type="week"],
 textarea {
-    @extend %transition;
-    @extend %border-radius-std;
-    @include border();
-    @include fontsize(std);
     display: block;
     width: 100%;
     max-width: 800px;
     box-sizing: padding-box;
     padding: pas(m);
     margin: 0 1;
-    background: $blanc;
     -moz-appearance: none;
     -webkit-appearance: none;
     -ms-appearance: none;
@@ -62,25 +57,17 @@ textarea {
 
 
     &:hover:not(:disabled) {
-        @include border();
     }
 
     &:focus {
-        @include border($color: action_hover);
         outline: none;
     }
 
     &:disabled {
-        @extend %color-gris;
-        @include background(gris);
     }
 }
 
 select {
-    @include fontsize(std);
-    @extend %border-radius-std;
-    @include border();
-    height: map-get($config-font-size, std) + pas(l);
     width: 100%;
 }
 
@@ -146,7 +133,7 @@ hr {
     height: 0px;
 
     &._petit {
-        width: 70px;
+        width: 80px;
     }
 
     &._sansmarge {
@@ -154,12 +141,8 @@ hr {
     }
 
     &._hide-medium {
-        @include screen(medium) {
-            display: none;
-        }
     }
 }
 
 hr {
-    @include border($cardinal: top);
 }

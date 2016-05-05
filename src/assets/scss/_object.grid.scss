@@ -9,6 +9,10 @@
 $goutiere: pas(m);
 $goutiere-large: pas(l);
 
+.oo-container {
+    overflow-y: auto; // hacker fusion des marges vertical
+}
+
 .oo-grid {
     display: flex;
     justify-content: space-between;

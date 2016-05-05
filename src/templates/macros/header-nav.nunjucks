@@ -1,0 +1,136 @@
+{% macro context(zone = 'compte', logged = true, page = '') %}
+
+    <header id="js-menu-container" class="header {% if page == 'homeRecrutement' %}_transparent{% endif %}">
+        <div class="header-conteneur">
+
+            <div class="header-logo">
+                <a href="" title="">
+                    {% if zone == 'compte' %}
+                        <img width="auto" height="18" src="../imgs/logo_lmde_compte.svg" alt="" />
+                    {% else %}
+                        <img width="auto" height="18" src="../imgs/logo_lmde.svg" alt="" />
+                    {% endif %}
+                </a>
+            </div>
+
+            <div class="header-filtresombre js-toggle-menu"></div>
+
+            <ul class="header-menu">
+
+                <li class="header-fermer textedroite">
+                    <a href="#" class="icon-Fermer js-toggle-menu"></a>
+                </li>
+                {% if zone == 'recrutement' %}
+                    <li class="header-item deroulant _from-large">
+                        <span class="header-lien deroulant-entete _hide-not-large">
+                            Nos formules d’abonnement
+                        </span>
+
+                        <div class="header-sousmenu deroulant-corps boite _clair">
+                            <ul class="boite-section">
+                                <li class="deroulant-item"><a>Formule Intégrale</a></li>
+                                <li class="deroulant-item"><a>Formule Week-end</a></li>
+                                <li class="deroulant-item"><a>Formule Numérique</a></li>
+                            </ul>
+
+                            <ul class="boite-section">
+                                <li>
+                                    <a href="">
+                                        <span class="icon-Cadeau"></span>
+                                        Offrir un abonnement
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="header-item">
+                        <a class="header-lien">Professionnels</a>
+                    </li>
+
+                    <li class="header-item">
+                        <a class="header-lien">Etudiants</a>
+                    </li>
+
+                {% elif zone == 'compte' %}
+
+                    <li class="header-item">
+                        <a class="header-lien">Accedez au Monde.fr</a>
+                    </li>
+
+                {% endif %}
+
+                {% if logged %}
+                <li class="header-item deroulant _from-large">
+
+                    <div class="header-lien deroulant-entete">
+                        <div class="blockclient _petit">
+                            <div class="blockclient-avatar">
+
+                            </div>
+                            <div class="blockclient-infos">
+                                <p class="blockclient-nom">
+                                    Mr Machin
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="header-sousmenu deroulant-corps boite _clair">
+                        {% if zone != 'compte' %}
+                        <ul class="boite-section">
+                            <li class="deroulant-item"><a>Votre compte</a></li>
+                            <li class="deroulant-item"><a>Changer d'offre</a></li>
+                        </ul>
+                        {% endif %}
+                        <ul class="boite-section">
+                            <li>
+                                <a href=""><span class="icon-Deconnexion"></span> Déconnexion</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </li>
+
+                {% else %}
+
+                <li class="header-item">
+
+                    <div class="header-lien">
+                        <div class="blockclient _petit">
+                            <div class="blockclient-avatar">
+
+                            </div>
+                            <div class="blockclient-infos">
+                                <a class="blockclient-nom">
+                                    mon compte
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="header-sousmenu deroulant-corps boite _clair">
+                        {% if zone != 'compte' %}
+                        <ul class="boite-section">
+                            <li class="deroulant-item"><a>Votre compte</a></li>
+                            <li class="deroulant-item"><a>Changer d'offre</a></li>
+                        </ul>
+                        {% endif %}
+                        <ul class="boite-section">
+                            <li>
+                                <a href=""><span class="icon-Deconnexion"></span> Déconnexion</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </li>
+
+                {% endif %}
+            </ul>
+
+            <div class="header-burger">
+                <a href="#" class="iconburger js-toggle-menu"></a>
+            </div>
+        </div>
+    </header>
+{% endmacro %}

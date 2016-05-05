@@ -1,0 +1,17 @@
+<!-- index.nunjucks -->
+{% extends "layout.nunjucks" %}
+
+{% block metatitle %} Formule étudiant {% endblock %}
+
+{% block headernav %}
+    {% import "macros/header-nav.nunjucks" as nav %}
+    {{ nav.context(zone = 'recrutement', logged = true ) }}
+{% endblock %}
+
+{% block content %}
+    {% import "macros/breadcrumbs.nunjucks" as breadcrumbs %}
+    {{ breadcrumbs.elems(title = 'formule etudiants', itemBefore = 'formules', homeTitle = 'acceuil') }}
+
+    hello world dfgsfdg sdfg sdfs d
+
+{% endblock %}
