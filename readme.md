@@ -6,10 +6,10 @@ with:
 - Gulp
 - ES2015 support with babel
 - SCSS & postCSS
-- Nunjucks templating
+- Static site builder using Nunjucks templating
 - hot reload
 - ESlint
 - styleLint
-- Documentation generation using gitbook
+- Documentation builder using gitbook
 
 WIP ... 
