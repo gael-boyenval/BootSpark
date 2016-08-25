@@ -1,5 +1,16 @@
 # description :
 
-## a basic boilerplate with Gulp / ES2015 compilation / SCSS, with documentation generator and more
+## a basic boilerplate to speed-up static HTML/CSS/JS development
 
-WORK IN PROGRESS ... 
+with: 
+
+- Gulp
+- ES2015 support with babel
+- SCSS & postCSS
+- Nunjucks templating
+- hot reload
+- ESlint
+- styleLint
+- Documentation generation using gitbook
+
+WIP ... 
