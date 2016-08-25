@@ -1,5 +1,5 @@
 
-####  boilerplate HTML/(s)CSS/JS for fast kickstart
+####  Boilerplate HTML/(s)CSS/JS for fast kickstart
 
 with: 
 
