@@ -1,6 +1,5 @@
-# description :
 
-## a basic boilerplate to speed-up static HTML/CSS/JS development
+####  boilerplate HTML/(s)CSS/JS for fast kickstart
 
 with: 
 
