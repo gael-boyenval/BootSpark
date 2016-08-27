@@ -4,7 +4,7 @@
 with: 
 
 - Gulp
-- ES2015 support with babel
+- ES2015 bundler using Babel and Rollup
 - SCSS & postCSS
 - Static site builder using Nunjucks templating
 - hot reload
